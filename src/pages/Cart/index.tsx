@@ -25,12 +25,11 @@ const Cart = (): JSX.Element => {
     subtotal: formatPrice(product.price * product.amount),
   }));
 
-  const total =
-    formatPrice(
-      cart.reduce((sumTotal, product) => {
-        return sumTotal + product.amount * product.price;
-      }, 0)
-    ) || "R$ 0,00";
+  const total = formatPrice(
+    cart.reduce((sumTotal, product) => {
+      return sumTotal + product.price * product.amount;
+    }, 0)
+  );
 
   function handleProductIncrement(product: Product) {
     updateProductAmount({

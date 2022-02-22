@@ -54,16 +54,18 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
         productExists.amount = amount;
       } else {
         const product = await api.get<Product>(`products/${productId}`);
+
         const newProduct = {
           ...product.data,
           amount: 1,
         };
         updatedCart.push(newProduct);
       }
+
       setCart(updatedCart);
       localStorage.setItem("@RocketShoes:cart", JSON.stringify(updatedCart));
     } catch (err) {
-      toast.error("Erro na edição do produto");
+      toast.error("Erro na adição do produto");
     }
   };
 
